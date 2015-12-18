@@ -1,0 +1,111 @@
+/*! [PROJECT_NAME] | Suitmedia */
+
+//  1. Font-face
+//  2. Basic styles
+//  3. Header
+//  4. Page styles
+//  5. Footer
+
+@import "partial/normalize";
+@import "partial/variables";
+@import "partial/resets";
+@import "partial/helpers";
+@import "partial/print";
+
+@import "mixin/mixin";
+@import "modules/modules";
+@import "plugin/plugin";
+
+// 1 Font-face
+// ------------------------------------------------------------------------ //
+
+
+
+// 2 Basic styles
+// ------------------------------------------------------------------------ //
+
+html {
+    font: 400 $base_font_size $base_font_family;
+    line-height: $base_line_height;
+}
+
+body {
+    color: $black90;
+}
+
+a {
+    color: $link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $link_hover;
+    }
+}
+
+.block {
+    margin-bottom: $space;
+}
+
+.container {
+    width: 95%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.content {
+
+}
+
+.shop {
+    max-width: 700px;
+}
+
+.sidebar {
+    float: right;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: whitesmoke;
+    width: 300px;
+    padding: 60px 20px 0 20px;
+}
+
+.order {
+    background: white;
+    position: relative;
+}
+
+.order__title {
+    position: absolute;
+    top: 0;
+}
+
+.order__items {
+    position: relative;
+    left: 0;
+    top: 30px;
+}
+
+.order__price {
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.order__total {
+    position: relative;
+    top: 50px;
+    margin-bottom: 50px;
+}
+// 3 Header
+// ------------------------------------------------------------------------ //
+
+
+// 4 Page styles
+// ------------------------------------------------------------------------ //
+
+
+// 5 Footer
+// ------------------------------------------------------------------------ //
