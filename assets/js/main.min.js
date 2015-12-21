@@ -50,7 +50,6 @@
         },
 
         addItem: function() {
-            var $button         = $('.box__button');
             var $shop           = $('.shop');
             var $orderItems     = $('.order__items');
             var $orderPrice     = $('.order__price');
@@ -61,12 +60,13 @@
             
             $shop.on('click', '.box__button', function(event) {
 
-            $.fn.digits = function(){ 
-                return this.each(function(){ 
-                $(this).text( $(this).text()
-                .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
-                })
-            }
+                $.fn.digits = function(){ 
+                    return this.each(function(){ 
+                    $(this).text( $(this).text()
+                    .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
+                    })
+                }
+
                 var item   = $(this).siblings($content).find($boxItem).text();
                 var price  = $(this).siblings($content).find($boxPrice).text();
                 var vItem  = $(this).siblings($content)
