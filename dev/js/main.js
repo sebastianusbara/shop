@@ -57,21 +57,18 @@
             var $boxItem        = $('.box__item');
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
+            var $totalPrice     = $('.order__total__price');
  
             $shop.on('click', '.box__button', function(event) {
-                var item            = $(this).siblings($content).find($boxItem).text();
-                var price           = $(this).siblings($content).find($boxPrice).text();
-                var $getPrice       = $(this).siblings($content).find($boxPrice);
-                var $totalPrice     = $(this).parent('main').siblings('aside').find('.order__total__price');
+                var item   = $(this).siblings($content).find($boxItem).text();
+                var price  = $(this).siblings($content).find($boxPrice).text();
+                var vItem  = $(this).siblings($content)
+                             .find($boxPrice).data('harga');
+                var vTotal  = Number( $totalPrice.text() );
 
                 $orderItems.append('<li>'+ item +'</li>');
                 $orderPrice.append('<li>'+ price +'</li>');
-                
-                $itemPrice = $getPrice.data('harga');
-                $itemTotal = $totalPrice.data('total');
-                $finalPrice = $itemTotal + $itemPrice;
-
-                $totalPrice.data('total') = $finalPrice; 
+                $totalPrice.text(vItem+vTotal);
             });
 
         }

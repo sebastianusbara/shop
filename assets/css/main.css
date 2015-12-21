@@ -1215,3 +1215,9 @@ a:hover, a:focus {
   top: 50px;
   margin-bottom: 50px;
 }
+
+.order__total__price {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
