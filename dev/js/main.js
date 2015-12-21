@@ -52,7 +52,6 @@
         addItem: function() {
             var $shop           = $('.shop');
             var $orderItems     = $('.order__items');
-            var $orderPrice     = $('.order__price');
             var $boxItem        = $('.box__item');
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
@@ -63,23 +62,24 @@
                 $.fn.digits = function(){ 
                     return this.each(function(){ 
                     $(this).text( $(this).text()
-                    .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
+                    .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "1.") ); 
                     })
                 }
 
-                var item   = $(this).siblings($content).find($boxItem).text();
-                var price  = $(this).siblings($content).find($boxPrice).text();
-                var vItem  = $(this).siblings($content)
-                             .find($boxPrice).data('harga');
+                var item   = $(this).data('nama');
+                var price  = $(this).data('harga');
                 var vTotal  = Number($totalPrice.attr('data-total'));
 
-                $orderItems.append('<li>'+ item +'</li>');
-                $orderPrice.append('<li>'+ price +'</li>');
+                $orderItems.append('<li>'+ 
+                    '<span class="order__items__item">' + item + '</span>' +
+                    '<span class="order__items__price">' + price + '</span>' 
+                    + '</li>');
 
-                $finale = $totalPrice.attr('data-total', vItem+vTotal);
+                $('.order__items__price').digits();
+                $finale = $totalPrice.attr('data-total', price+vTotal);
                 $dataFinale = $finale.attr('data-total');
                 
-                $totalPrice.text($dataFinale).digits();
+                $pay = $('.order__total__price').text($dataFinale).digits();
             });
         }
     };

@@ -1173,19 +1173,35 @@ a:hover, a:focus {
   margin: 0 auto;
 }
 
-.shop {
-  max-width: 700px;
+.content {
+  position: relative;
+  width: 90%;
+  margin: auto;
+}
+
+@media screen and (min-width: 48em) {
+  .content {
+    width: -webkit-calc(100% - 500px);
+    width: calc(100% - 500px);
+    margin-left: 100px;
+  }
 }
 
 .sidebar {
   float: right;
   position: fixed;
-  right: 0;
-  top: 0;
+  top: 4px;
   height: 100%;
-  background: whitesmoke;
-  width: 300px;
+  width: 100%;
   padding: 60px 20px 0 20px;
+  right: 0;
+}
+
+@media screen and (min-width: 48em) {
+  .sidebar {
+    right: 100px;
+    width: 300px;
+  }
 }
 
 .order {
@@ -1196,12 +1212,24 @@ a:hover, a:focus {
 .order__title {
   position: absolute;
   top: 0;
+  border-bottom: 1px solid grey;
+  width: 100%;
+}
+
+.order__title h3 {
+  margin: 0;
+  padding: 5px;
 }
 
 .order__items {
   position: relative;
   left: 0;
-  top: 30px;
+  top: 50px;
+}
+
+.order__items li {
+  border-bottom: 1px solid grey;
+  padding: 5px;
 }
 
 .order__price {
@@ -1214,6 +1242,7 @@ a:hover, a:focus {
   position: relative;
   top: 50px;
   margin-bottom: 50px;
+  padding: 5px;
 }
 
 .order__total__price {
@@ -1223,5 +1252,19 @@ a:hover, a:focus {
 }
 
 .order__total__price:before {
+  content: 'Rp ';
+}
+
+.order__items__item {
+  font-weight: bold;
+  text-align: left;
+}
+
+.order__items__price {
+  position: absolute;
+  right: 0;
+}
+
+.order__items__price:before {
   content: 'Rp ';
 }
