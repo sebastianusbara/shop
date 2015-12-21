@@ -1163,6 +1163,11 @@ a:hover, a:focus {
   color: #0074ba;
 }
 
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .block {
   margin-bottom: 1.6em;
 }
@@ -1228,8 +1233,9 @@ a:hover, a:focus {
 }
 
 .order__items li {
+  position: relative;
   border-bottom: 1px solid grey;
-  padding: 5px;
+  padding: 10px 5px;
 }
 
 .order__price {
@@ -1262,9 +1268,15 @@ a:hover, a:focus {
 
 .order__items__price {
   position: absolute;
-  right: 0;
+  right: 30px;
 }
 
 .order__items__price:before {
   content: 'Rp ';
+}
+
+.btn-close {
+  position: absolute;
+  right: 0;
+  top: 5px;
 }

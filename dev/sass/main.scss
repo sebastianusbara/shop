@@ -43,6 +43,10 @@ a {
     }
 }
 
+img {
+    object-fit: cover;
+}
+
 .block {
     margin-bottom: $space;
 }
@@ -106,8 +110,9 @@ a {
     top: 50px;
 
     li {
+        position: relative;
         border-bottom: 1px solid grey;
-        padding: 5px;
+        padding: 10px 5px;
     }
 }
 
@@ -141,13 +146,18 @@ a {
 
 .order__items__price {
     position: absolute;
-    right: 0;
+    right: 30px;
 
     &:before {
         content: 'Rp ';
     }
 }
 
+.btn-close {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
 // 3 Header 
 // ------------------------------------------------------------------------ //
 

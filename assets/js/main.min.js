@@ -22,6 +22,7 @@
             Site.WPViewportFix();
             Site.autoNumeric();
             Site.addItem();
+            Site.deleteItem();
 
             window.Site = Site;
         },
@@ -66,7 +67,6 @@
             var $totalPrice     = $('.order__total__price');
 
             $shop.on('click', '.box__button', function(event) {
-
                 var item   = $(this).data('nama');
                 var price  = $(this).data('harga');
                 var vTotal  = Number($totalPrice.attr('data-total'));
@@ -74,15 +74,38 @@
                 $orderItems.append('<li>'+ 
                     '<span class="order__items__item">' + item + '</span>' +
                     '<span class="order__items__price">' + price + '</span>' 
-                    + '</li>');
+                    +'<button class="btn-close">' + 'X' + '</button>' + 
+                    '</li>');
 
                 $('.order__items__price').autoNumeric();
                 $('.order__total__price').autoNumeric('destroy');
-                
+
                 $finale = $totalPrice.attr('data-total', price+vTotal);
                 $dataFinale = $finale.attr('data-total');
                 
                 $('.order__total__price').text($dataFinale).autoNumeric();
+            });
+        },
+
+        deleteItem: function() {
+            var $order          = $('.order__items');
+            var close           = '.btn-close';
+
+            $order.on('click', close , function(event) {
+                var $total    = $('.order__total__price').attr('data-total');
+                var $itemVal  = $(this).siblings('.order__items__price').text();
+                var $priceInt = parseInt($itemVal) + '000';
+                var $getPrice = Number($priceInt);
+
+                $('.order__total__price').autoNumeric('destroy');
+                
+                $(this).parent().remove();
+                $getTotal = $('.order__total__price')
+                            .attr('data-total', $total-$getPrice);
+                $stringTotal = $('.order__total__price').attr('data-total');
+                
+                $('.order__total__price').text($stringTotal).autoNumeric();
+
             });
         }
     };
