@@ -10,7 +10,8 @@
     var assets = {
         _jquery_cdn     : 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
         _jquery_local   : path.js + 'jquery.min.js',
-        _fastclick      : path.js + 'fastclick.min.js'
+        _fastclick      : path.js + 'fastclick.min.js',
+        _autonumeric    : path.js + 'autoNumeric.min.js'
     };
 
     var Site = {
@@ -19,6 +20,7 @@
             Site.fastClick();
             Site.enableActiveStateMobile();
             Site.WPViewportFix();
+            Site.autoNumeric();
             Site.addItem();
 
             window.Site = Site;
@@ -49,6 +51,12 @@
             }
         },
 
+        autoNumeric: function () {
+            Modernizr.load({
+                load    : assets._autonumeric
+            });
+        },
+
         addItem: function() {
             var $shop           = $('.shop');
             var $orderItems     = $('.order__items');
@@ -56,15 +64,8 @@
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
             var $totalPrice     = $('.order__total__price');
-            
-            $shop.on('click', '.box__button', function(event) {
 
-                $.fn.digits = function(){ 
-                    return this.each(function(){ 
-                    $(this).text( $(this).text()
-                    .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "1.") ); 
-                    })
-                }
+            $shop.on('click', '.box__button', function(event) {
 
                 var item   = $(this).data('nama');
                 var price  = $(this).data('harga');
@@ -75,11 +76,13 @@
                     '<span class="order__items__price">' + price + '</span>' 
                     + '</li>');
 
-                $('.order__items__price').digits();
+                $('.order__items__price').autoNumeric();
+                $('.order__total__price').autoNumeric('destroy');
+                
                 $finale = $totalPrice.attr('data-total', price+vTotal);
                 $dataFinale = $finale.attr('data-total');
                 
-                $pay = $('.order__total__price').text($dataFinale).digits();
+                $('.order__total__price').text($dataFinale).autoNumeric();
             });
         }
     };
