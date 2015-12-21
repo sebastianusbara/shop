@@ -1221,3 +1221,7 @@ a:hover, a:focus {
   right: 0;
   top: 0;
 }
+
+.order__total__price:before {
+  content: 'Rp ';
+}

@@ -58,21 +58,30 @@
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
             var $totalPrice     = $('.order__total__price');
- 
+            
             $shop.on('click', '.box__button', function(event) {
+
+            $.fn.digits = function(){ 
+                return this.each(function(){ 
+                $(this).text( $(this).text()
+                .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
+                })
+            }
                 var item   = $(this).siblings($content).find($boxItem).text();
                 var price  = $(this).siblings($content).find($boxPrice).text();
                 var vItem  = $(this).siblings($content)
                              .find($boxPrice).data('harga');
-                var vTotal  = Number( $totalPrice.text() );
+                var vTotal  = Number($totalPrice.attr('data-total'));
 
                 $orderItems.append('<li>'+ item +'</li>');
                 $orderPrice.append('<li>'+ price +'</li>');
-                $totalPrice.text(vItem+vTotal);
+
+                $finale = $totalPrice.attr('data-total', vItem+vTotal);
+                $dataFinale = $finale.attr('data-total');
+                
+                $totalPrice.text($dataFinale).digits();
             });
-
         }
-
     };
 
     var checkJquery = function () {
