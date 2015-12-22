@@ -68,10 +68,6 @@ img {
     }
 }
 
-.shop {
-
-}
-
 .sidebar {
     float: right;
     position: fixed;
@@ -157,6 +153,12 @@ img {
     position: absolute;
     right: 0;
     top: 5px;
+}
+
+.loadBtn {
+    position: relative;
+    top: 50px;
+    margin-bottom: 200px;
 }
 // 3 Header 
 // ------------------------------------------------------------------------ //

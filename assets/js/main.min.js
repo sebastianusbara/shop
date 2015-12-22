@@ -2,7 +2,8 @@
 
 ;(function ( window, document, undefined ) {
     
-    var disableBtn = 'box__button--blue box__button--disabled';
+    var disableBtn  = 'box__button--blue box__button--disabled';
+    var loadBtn     = '<button class="btn btn--block btn--blue loadBtn">Load More</button>';
 
     var path = {
         css: myPrefix + 'assets/css/',
@@ -25,6 +26,7 @@
             Site.autoNumeric();
             Site.addItem();
             Site.deleteItem();
+            Site.loadData();
 
             window.Site = Site;
         },
@@ -66,18 +68,20 @@
             var $boxItem        = $('.box__item');
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
+            var $orderTotal     = $('.order__total');
             var $totalPrice     = $('.order__total__price');
+
         
             $shop.on('click', '.box__button', function(event) {
-                var item   = $(this).data('nama');
-                var price  = $(this).data('harga');
-                var vTotal = Number($totalPrice.attr('data-total'));
-                var getID  = $(this).attr('id');
+                var item    = $(this).data('nama');
+                var price   = $(this).data('harga');
+                var vTotal  = Number($totalPrice.attr('data-total'));
+                var getID   = $(this).attr('id');
 
                 $(this).toggleClass(disableBtn);
                 $(this).attr('disabled', true);
 
-                $orderItems.append('<li>'+ 
+                $orderItems.append('<li class="show">'+ 
                     '<span class="order__items__item">' + item + '</span>' +
                     '<span class="order__items__price">' + price + '</span>' 
                     +'<button class="btn-close" data-id="'+getID+'">' + 'X' 
@@ -120,6 +124,43 @@
                     $('.order__total__price').text($stringTotal).autoNumeric();
                 }
 
+            });
+        },
+
+        loadData: function() {
+            $('.shop').on('click', '.loadBtn' , function(event) {
+                $('.loadBtn').removeClass('btn--blue');
+                $('.loadBtn').attr('disabled', true);
+                $('.loadBtn').text('Wait Loading data...');
+
+                $.getJSON('dev/js/format-data.json', function(json, textStatus) {
+                    $('.bzg_c').each(function(index, el) {
+                        var $orderItems     = $('.order__items');
+                        var item            = json.data[index].name;
+                        var price           = json.data[index].price;
+                        var getID           = index;
+                        var url             = json.data[index].imgUrl;
+
+                        $('.shop .bzg').append(
+                            '<div class="bzg_c" data-col="m6 l4">' + 
+                            '<div class="box js_box">' +
+                            '<div class="box__content">' +
+                            '<figure class="box__img">' +
+                            '<img src="'+url+'" alt="'+item+'">'+'</figure>'
+                            + '<div class="box__item">' + '<b>' + item + '</b>' 
+                            + '</div>' + '<div class="box__price">'  
+                            + price + '</div>' + '</div>' +
+                            '<button id="'+getID+'" class="box__button box__button--blue" data-harga="'+price+'" data-nama="'+item+'">'
+                            + 'Add to Cart' +'</button>'+ '</div>' + '</div>');
+
+                        $('.js_box').ready(function() {
+                            $('.loadBtn').addClass('btn--blue');
+                            $('.loadBtn').attr('disabled', false);
+                            $('.loadBtn').text('Load Data');
+                            $('.box__price').autoNumeric();
+                        });
+                    });
+                });
             });
         }
     };

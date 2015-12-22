@@ -683,6 +683,11 @@ table {
   width: 100%;
 }
 
+.btn--blue {
+  background: #0094ed;
+  color: white;
+}
+
 /*! Baze Grid v2.0.2 | (c) 2014 @_bobbylie | https://github.com/ImBobby/Baze-Grid */
 .bzg:after {
   display: table;
@@ -1152,6 +1157,10 @@ input[type="number"] {
   border: 0;
 }
 
+.box__price:before {
+  content: 'Rp ';
+}
+
 html {
   font: 400 16px sans-serif;
   line-height: 1.6em;
@@ -1286,4 +1295,10 @@ img {
   position: absolute;
   right: 0;
   top: 5px;
+}
+
+.loadBtn {
+  position: relative;
+  top: 50px;
+  margin-bottom: 200px;
 }

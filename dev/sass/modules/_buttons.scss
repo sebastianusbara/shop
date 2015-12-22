@@ -50,3 +50,8 @@ $BTN_PADDING: $space/3 $space;
 .btn--block {
     width: 100%;
 }
+
+.btn--blue {
+    background: $link;
+    color: white;
+}

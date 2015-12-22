@@ -39,3 +39,9 @@
 	color: white;
 	border: 0;
 }
+
+.box__price {
+	&:before {
+		content: 'Rp ';
+	}
+}
