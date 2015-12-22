@@ -99,12 +99,14 @@
 
                 $('.order__total__price').autoNumeric('destroy');
                 
-                $(this).parent().remove();
-                $getTotal = $('.order__total__price')
-                            .attr('data-total', $total-$getPrice);
-                $stringTotal = $('.order__total__price').attr('data-total');
-                
-                $('.order__total__price').text($stringTotal).autoNumeric();
+                if (window.confirm("Apakah anda yakin akan menghapus data?")) { 
+                    $(this).parent().remove();
+                    $getTotal = $('.order__total__price')
+                                .attr('data-total', $total-$getPrice);
+                    $stringTotal = $('.order__total__price').attr('data-total');
+                    
+                    $('.order__total__price').text($stringTotal).autoNumeric();
+                }
 
             });
         }
