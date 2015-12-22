@@ -67,7 +67,7 @@
             var $boxPrice       = $('.box__price');
             var $content        = $('.box__content');
             var $totalPrice     = $('.order__total__price');
-
+        
             $shop.on('click', '.box__button', function(event) {
                 var item   = $(this).data('nama');
                 var price  = $(this).data('harga');
@@ -75,14 +75,14 @@
                 var getID  = $(this).attr('id');
 
                 $(this).toggleClass(disableBtn);
+                $(this).attr('disabled', true);
 
                 $orderItems.append('<li>'+ 
                     '<span class="order__items__item">' + item + '</span>' +
                     '<span class="order__items__price">' + price + '</span>' 
-                    +'<button class="btn-close" data-id="">' + 'X' 
+                    +'<button class="btn-close" data-id="'+getID+'">' + 'X' 
                     + '</button>' + '</li>');
 
-                $('.btn-close').attr('data-id', getID);
                 $('.order__items__price').autoNumeric();
                 $('.order__total__price').autoNumeric('destroy');
 
@@ -90,26 +90,29 @@
                 $dataFinale = $finale.attr('data-total');
                 
                 $('.order__total__price').text($dataFinale).autoNumeric();
-            });
+            });    
         },
 
         deleteItem: function() {
-            var $order          = $('.order__items');
-            var close           = '.btn-close';
+            var $order  = $('.order__items');
+            var close   = '.btn-close';
 
             $order.on('click', close , function(event) {
                 var $total    = $('.order__total__price').attr('data-total');
                 var $itemVal  = $(this).siblings('.order__items__price').text();
                 var $priceInt = parseInt($itemVal) + '000';
                 var $getPrice = Number($priceInt);
-                var $dataID   = $(this).attr('data-id');
-                var $getBtn   = $('#'+ $dataID);
+                var dataID   = $(this).attr('data-id');
+                var $getBtn   = $('#'+ dataID);
 
                 $('.order__total__price').autoNumeric('destroy');
                 
                 if (window.confirm("Apakah anda yakin akan menghapus data?")) { 
+                    
                     $(this).parent().remove();
                     $getBtn.toggleClass(disableBtn);
+                    $getBtn.attr('disabled', false);
+
                     $getTotal = $('.order__total__price')
                                 .attr('data-total', $total-$getPrice);
                     $stringTotal = $('.order__total__price').attr('data-total');

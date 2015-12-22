@@ -34,10 +34,8 @@
 }
 
 .box__button--disabled {
-	cursor: not-allowed;
 	background: $black40;
 	padding: 10px;
 	color: white;
 	border: 0;
-	pointer-events: none;
 }
