@@ -1145,6 +1145,15 @@ input[type="number"] {
   border: 0;
 }
 
+.box__button--disabled {
+  cursor: not-allowed;
+  background: #bbbbbb;
+  padding: 10px;
+  color: white;
+  border: 0;
+  pointer-events: none;
+}
+
 html {
   font: 400 16px sans-serif;
   line-height: 1.6em;

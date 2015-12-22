@@ -1,6 +1,8 @@
 /*! [PROJECT_NAME] | Suitmedia */
 
 ;(function ( window, document, undefined ) {
+    
+    var disableBtn = 'box__button--blue box__button--disabled';
 
     var path = {
         css: myPrefix + 'assets/css/',
@@ -69,14 +71,18 @@
             $shop.on('click', '.box__button', function(event) {
                 var item   = $(this).data('nama');
                 var price  = $(this).data('harga');
-                var vTotal  = Number($totalPrice.attr('data-total'));
+                var vTotal = Number($totalPrice.attr('data-total'));
+                var getID  = $(this).attr('id');
+
+                $(this).toggleClass(disableBtn);
 
                 $orderItems.append('<li>'+ 
                     '<span class="order__items__item">' + item + '</span>' +
                     '<span class="order__items__price">' + price + '</span>' 
-                    +'<button class="btn-close">' + 'X' + '</button>' + 
-                    '</li>');
+                    +'<button class="btn-close" data-id="">' + 'X' 
+                    + '</button>' + '</li>');
 
+                $('.btn-close').attr('data-id', getID);
                 $('.order__items__price').autoNumeric();
                 $('.order__total__price').autoNumeric('destroy');
 
@@ -96,11 +102,14 @@
                 var $itemVal  = $(this).siblings('.order__items__price').text();
                 var $priceInt = parseInt($itemVal) + '000';
                 var $getPrice = Number($priceInt);
+                var $dataID   = $(this).attr('data-id');
+                var $getBtn   = $('#'+ $dataID);
 
                 $('.order__total__price').autoNumeric('destroy');
                 
                 if (window.confirm("Apakah anda yakin akan menghapus data?")) { 
                     $(this).parent().remove();
+                    $getBtn.toggleClass(disableBtn);
                     $getTotal = $('.order__total__price')
                                 .attr('data-total', $total-$getPrice);
                     $stringTotal = $('.order__total__price').attr('data-total');
