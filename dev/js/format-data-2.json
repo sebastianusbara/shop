@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": "food7",
+      "imgUrl": "//lorempixel.com/200/200/food/7",
+      "name": "Krecek",
+      "price": "125000"
+    },
+    {
+      "id": "food8",
+      "imgUrl": "//lorempixel.com/200/200/food/8",
+      "name": "Salad",
+      "price": "3000"
+    },
+    {
+      "id": "food9",
+      "imgUrl": "//lorempixel.com/200/200/food/9",
+      "name": "Kacang hijau",
+      "price": "45000"
+    },
+    {
+      "id": "food10",
+      "imgUrl": "//lorempixel.com/200/200/food/10",
+      "name": "Mie yamin",
+      "price": "14000"
+    },
+    {
+      "id": "food11",
+      "imgUrl": "//lorempixel.com/200/200/food/11",
+      "name": "Tahu isi",
+      "price": "10000"
+    },
+    {
+      "id": "food12",
+      "imgUrl": "//lorempixel.com/200/200/food/12",
+      "name": "Nasi capcay",
+      "price": "17000"
+    }
+  ],
+  "next": null
+}

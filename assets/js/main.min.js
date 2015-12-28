@@ -132,8 +132,9 @@
                 $('.loadBtn').removeClass('btn--blue');
                 $('.loadBtn').attr('disabled', true);
                 $('.loadBtn').text('Wait Loading data...');
+                $load = $('.loadBtn').data('load');
 
-                $.getJSON('dev/js/format-data.json', function(json, textStatus) {
+                $.getJSON($load, function(json, textStatus) {
                     $('.bzg_c').each(function(index, el) {
                         var $orderItems     = $('.order__items');
                         var item            = json.data[index].name;
