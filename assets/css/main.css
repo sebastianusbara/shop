@@ -1198,6 +1198,7 @@ img {
   position: relative;
   width: 90%;
   margin: auto;
+  margin-bottom: 200px;
 }
 
 @media screen and (min-width: 48em) {
@@ -1300,5 +1301,4 @@ img {
 .loadBtn {
   position: relative;
   top: 50px;
-  margin-bottom: 200px;
 }
