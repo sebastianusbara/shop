@@ -21,7 +21,6 @@
     var Site = {
 
         init: function () {
-            Site.handleBars();
             Site.fastClick();
             Site.enableActiveStateMobile();
             Site.WPViewportFix();
@@ -31,12 +30,6 @@
             Site.loadData();
 
             window.Site = Site;
-        },
-
-        handleBars: function () {
-            Modernizr.load({
-                load    : assets._handlebars
-            });
         },
 
         fastClick: function () {
@@ -136,29 +129,38 @@
         },
 
         loadData: function() {
-            $('.shop').on('click', '.loadBtn' , function(event) {
-                $('.loadBtn').removeClass('btn--blue');
-                $('.loadBtn').attr('disabled', true);
-                $('.loadBtn').text('Wait Loading data...');
-                var load = $('.loadBtn').data('load');
+            Modernizr.load({
+                load    : assets._handlebars,
+                complete: function () {
+                    loadItem();
+                }
+            });
 
-                $.getJSON(load, function(json, textStatus) {
-                    var source      = $('#template').html();
-                    var template    = Handlebars.compile(source); 
-                    var targetData  = template(json);   
-                        
-                    $('.shop .bzg').append(targetData);
+            function loadItem() {
+                $('.shop').on('click', '.loadBtn' , function(event) {
+                    $('.loadBtn').removeClass('btn--blue');
+                    $('.loadBtn').attr('disabled', true);
+                    $('.loadBtn').text('Wait Loading data...');
+                    var load = $('.loadBtn').data('load');
 
-                    $('.bzg_c').each(function(index, el) {
-                        $('.js_box').ready(function() {
-                            $('.loadBtn').addClass('btn--blue');
-                            $('.loadBtn').attr('disabled', false);
-                            $('.loadBtn').text('Load Data');
-                            $('.box__price').autoNumeric();
+                    $.getJSON(load, function(json, textStatus) {
+                        var source      = $('#template').html();
+                        var template    = Handlebars.compile(source); 
+                        var targetData  = template(json);   
+                            
+                        $('.shop .bzg').append(targetData);
+
+                        $('.bzg_c').each(function(index, el) {
+                            $('.js_box').ready(function() {
+                                $('.loadBtn').addClass('btn--blue');
+                                $('.loadBtn').attr('disabled', false);
+                                $('.loadBtn').text('Load Data');
+                                $('.box__price').autoNumeric();
+                            });
                         });
                     });
                 });
-            });
+            }
         }
     };
 
