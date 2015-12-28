@@ -163,5 +163,12 @@
         </div>
     {{/each}}
     </script>
+    <script id="orderTemplate" type="text/x-handlebars-template">
+        <li class="show"> 
+            <span class="order__items__item">{{item}}</span>
+            <span class="order__items__price">{{price}}</span> 
+            <button class="btn-close" data-id="{{id}}"> X </button>
+        </li>
+    </script>
 </body>
 </html>

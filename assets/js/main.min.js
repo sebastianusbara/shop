@@ -71,6 +71,8 @@
             var $content        = $('.box__content');
             var $orderTotal     = $('.order__total');
             var $totalPrice     = $('.order__total__price');
+            var source          = $('#orderTemplate').html();
+            var template        = Handlebars.compile(source); 
 
         
             $shop.on('click', '.box__button', function(event) {
@@ -78,15 +80,13 @@
                 var price   = $(this).data('harga');
                 var vTotal  = Number($totalPrice.attr('data-total'));
                 var getID   = $(this).attr('id');
+                var getData = {item: item, price: price, id: getID};
+                var targetData  = template(getData);
 
                 $(this).toggleClass(disableBtn);
                 $(this).attr('disabled', true);
 
-                $orderItems.append('<li class="show">'+ 
-                    '<span class="order__items__item">' + item + '</span>' +
-                    '<span class="order__items__price">' + price + '</span>' 
-                    +'<button class="btn-close" data-id="'+getID+'">' + 'X' 
-                    + '</button>' + '</li>');
+                $orderItems.append(targetData);
 
                 $('.order__items__price').autoNumeric();
                 $('.order__total__price').autoNumeric('destroy');
@@ -129,49 +129,41 @@
         },
 
         loadData: function() {
-            Modernizr.load({
-                load    : assets._handlebars,
-                complete: function () {
-                    loadItem();
-                }
+
+            var $btn        = $('.loadBtn');
+            var $page       = $(window);
+            var source      = $('#template').html();
+            var template    = Handlebars.compile(source); 
+
+            $('.shop').on('click', '.loadBtn' , function(event) {
+                $btn.removeClass('btn--blue');
+                $btn.attr('disabled', true);
+                $btn.text('Wait Loading data...');
+
+                var url = $(this).attr('data-load');
+
+                $.getJSON(url, function(json, textStatus) {
+                    var targetData  = template(json);   
+                    
+                    $('.shop .bzg').append(targetData);
+                    $btn.attr('data-load', json.next);
+
+                    $btn.addClass('btn--blue');
+                    $btn.attr('disabled', false);
+                    $btn.text('Load Data');
+                    $('.box__price').autoNumeric();
+
+                    if (!json.next) {
+                        $btn.remove();
+                    }
+                });
             });
 
-            function loadItem() {
-                var $btn        = $('.loadBtn');
-                var source      = $('#template').html();
-                var template    = Handlebars.compile(source); 
-
-                $(window).scroll(function() {
-                   if($(window).scrollTop() + $(window).height() 
-                    == $(document).height()) {
-                       $btn.trigger('click');
-                   }
-                });
-
-                $('.shop').on('click', '.loadBtn' , function(event) {
-                    $btn.removeClass('btn--blue');
-                    $btn.attr('disabled', true);
-                    $btn.text('Wait Loading data...');
-
-                    var url = $(this).attr('data-load');
-
-                    $.getJSON(url, function(json, textStatus) {
-                        var targetData  = template(json);   
-                        
-                        $('.shop .bzg').append(targetData);
-                        $btn.attr('data-load', json.next);
-
-                        $btn.addClass('btn--blue');
-                        $btn.attr('disabled', false);
-                        $btn.text('Load Data');
-                        $('.box__price').autoNumeric();
-
-                        if (!json.next) {
-                            $btn.remove();
-                        }
-                    });
-                });
-            }
+            $page.scroll(function() {
+               if($page.scrollTop() + $page.height() === $(document).height()) {
+                   $btn.trigger('click');
+               }
+            });
         }
     };
 
@@ -185,9 +177,14 @@
         ]);
     };
 
-    Modernizr.load({
-        load    : assets._jquery_cdn,
-        complete: checkJquery
-    });
+    Modernizr.load([
+        {
+            load    : assets._jquery_cdn,
+        },
+        {   
+            load    : assets._handlebars,
+            complete: checkJquery
+        }
+    ]);
 
 })( window, document );
