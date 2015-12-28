@@ -137,9 +137,16 @@
             });
 
             function loadItem() {
-                var $btn = $('.loadBtn');
+                var $btn        = $('.loadBtn');
                 var source      = $('#template').html();
                 var template    = Handlebars.compile(source); 
+
+                $(window).scroll(function() {
+                   if($(window).scrollTop() + $(window).height() 
+                    == $(document).height()) {
+                       $btn.trigger('click');
+                   }
+                });
 
                 $('.shop').on('click', '.loadBtn' , function(event) {
                     $btn.removeClass('btn--blue');
