@@ -4,37 +4,43 @@
       "id": "food1",
       "imgUrl": "//lorempixel.com/200/200/food/1",
       "name": "Ketoprak",
-      "price": "25000"
+      "price": "25000",
+      "hot": true
     },
     {
       "id": "food2",
       "imgUrl": "//lorempixel.com/200/200/food/2",
       "name": "Acar",
-      "price": "35000"
+      "price": "35000",
+      "hot": true
     },
     {
       "id": "food3",
       "imgUrl": "//lorempixel.com/200/200/food/3",
       "name": "Bubur",
-      "price": "45000"
+      "price": "45000",
+      "hot": false
     },
     {
       "id": "food4",
       "imgUrl": "//lorempixel.com/200/200/food/4",
       "name": "Sotomie",
-      "price": "55000"
+      "price": "55000",
+      "hot": false
     },
     {
       "id": "food5",
       "imgUrl": "//lorempixel.com/200/200/food/5",
       "name": "Iga penyet",
-      "price": "65000"
+      "price": "65000",
+      "hot": true
     },
     {
       "id": "food6",
       "imgUrl": "//lorempixel.com/200/200/food/6",
       "name": "Sate kulit",
-      "price": "75000"
+      "price": "75000",
+      "hot": false
     }
   ],
   "next": "dev/js/format-data-2.json"
