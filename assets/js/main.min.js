@@ -137,27 +137,31 @@
             });
 
             function loadItem() {
+                var $btn = $('.loadBtn');
+                var source      = $('#template').html();
+                var template    = Handlebars.compile(source); 
+
                 $('.shop').on('click', '.loadBtn' , function(event) {
-                    $('.loadBtn').removeClass('btn--blue');
-                    $('.loadBtn').attr('disabled', true);
-                    $('.loadBtn').text('Wait Loading data...');
-                    var load = $('.loadBtn').data('load');
+                    $btn.removeClass('btn--blue');
+                    $btn.attr('disabled', true);
+                    $btn.text('Wait Loading data...');
 
-                    $.getJSON(load, function(json, textStatus) {
-                        var source      = $('#template').html();
-                        var template    = Handlebars.compile(source); 
+                    var url = $(this).attr('data-load');
+
+                    $.getJSON(url, function(json, textStatus) {
                         var targetData  = template(json);   
-                            
+                        
                         $('.shop .bzg').append(targetData);
+                        $btn.attr('data-load', json.next);
 
-                        $('.bzg_c').each(function(index, el) {
-                            $('.js_box').ready(function() {
-                                $('.loadBtn').addClass('btn--blue');
-                                $('.loadBtn').attr('disabled', false);
-                                $('.loadBtn').text('Load Data');
-                                $('.box__price').autoNumeric();
-                            });
-                        });
+                        $btn.addClass('btn--blue');
+                        $btn.attr('disabled', false);
+                        $btn.text('Load Data');
+                        $('.box__price').autoNumeric();
+
+                        if (!json.next) {
+                            $btn.remove();
+                        }
                     });
                 });
             }
