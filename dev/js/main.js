@@ -140,15 +140,15 @@
                 $('.loadBtn').removeClass('btn--blue');
                 $('.loadBtn').attr('disabled', true);
                 $('.loadBtn').text('Wait Loading data...');
-                $load = $('.loadBtn').data('load');
+                var load = $('.loadBtn').data('load');
 
-                $.getJSON($load, function(json, textStatus) {
+                $.getJSON(load, function(json, textStatus) {
                     var source      = $('#template').html();
                     var template    = Handlebars.compile(source); 
                     var targetData  = template(json);   
                         
                     $('.shop .bzg').append(targetData);
-                    
+
                     $('.bzg_c').each(function(index, el) {
                         $('.js_box').ready(function() {
                             $('.loadBtn').addClass('btn--blue');
