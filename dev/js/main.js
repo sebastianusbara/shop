@@ -13,6 +13,7 @@
     var assets = {
         _jquery_cdn     : 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js',
         _jquery_local   : path.js + 'jquery.min.js',
+        _handlebars     : path.js + 'handlebars.min.js',
         _fastclick      : path.js + 'fastclick.min.js',
         _autonumeric    : path.js + 'autoNumeric.min.js'
     };
@@ -20,6 +21,7 @@
     var Site = {
 
         init: function () {
+            Site.handleBars();
             Site.fastClick();
             Site.enableActiveStateMobile();
             Site.WPViewportFix();
@@ -29,6 +31,12 @@
             Site.loadData();
 
             window.Site = Site;
+        },
+
+        handleBars: function () {
+            Modernizr.load({
+                load    : assets._handlebars
+            });
         },
 
         fastClick: function () {
@@ -135,25 +143,13 @@
                 $load = $('.loadBtn').data('load');
 
                 $.getJSON($load, function(json, textStatus) {
+                    var source      = $('#template').html();
+                    var template    = Handlebars.compile(source); 
+                    var targetData  = template(json);   
+                        
+                    $('.shop .bzg').append(targetData);
+                    
                     $('.bzg_c').each(function(index, el) {
-                        var $orderItems     = $('.order__items');
-                        var item            = json.data[index].name;
-                        var price           = json.data[index].price;
-                        var getID           = index;
-                        var url             = json.data[index].imgUrl;
-
-                        $('.shop .bzg').append(
-                            '<div class="bzg_c" data-col="m6 l4">' + 
-                            '<div class="box js_box">' +
-                            '<div class="box__content">' +
-                            '<figure class="box__img">' +
-                            '<img src="'+url+'" alt="'+item+'">'+'</figure>'
-                            + '<div class="box__item">' + '<b>' + item + '</b>' 
-                            + '</div>' + '<div class="box__price">'  
-                            + price + '</div>' + '</div>' +
-                            '<button id="'+getID+'" class="box__button box__button--blue" data-harga="'+price+'" data-nama="'+item+'">'
-                            + 'Add to Cart' +'</button>'+ '</div>' + '</div>');
-
                         $('.js_box').ready(function() {
                             $('.loadBtn').addClass('btn--blue');
                             $('.loadBtn').attr('disabled', false);
