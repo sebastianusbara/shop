@@ -2,35 +2,42 @@
 	height: 350px;
 	position: relative;
 
-	.main__slider__img {
+	.main__slider__item {
 		
 		img {
 			width: 100%;
 			height: 350px;
-			object-fit : cover;
 		}
 	}
 	
 	.slick-dots {
 		position: absolute;
 		bottom: 0;
-		left: calc(50% - 80px);
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.slick-dots li {
 		display: inline-block;
-		border-radius: 100%;
-		border: white solid 5px;
-		padding: 12px;
-		margin-right: 10px;
-		cursor: pointer;
 		
 		button {
-			display: none;
+			width: 30px;
+			height: 30px;
+			border-radius: 100%;
+			border: white solid 5px;
+			padding: 12px;
+			margin-right: 10px;
+			cursor: pointer;
+			background: none;
+
+			&:focus {
+				outline: none;
+			}
 		}
+
 	}
 
-	li.slick-active {
+	li.slick-active button {
 		background: $link;
 		width: 60px;
 		border-radius: 20px;

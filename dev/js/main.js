@@ -172,7 +172,7 @@
         mainSlider: function() {
             $('.main__slider').slick({
                 arrows: false,
-                dots: true
+                dots: true,
             });
         },
 
@@ -181,8 +181,12 @@
             var origOffsetY = sticky.offsetTop;
 
             function onScroll(e) {
-            window.scrollY >= origOffsetY ? sticky.classList.add('sidebar__fixed') :
-            sticky.classList.remove('sidebar__fixed');
+                if ( window.scrollY >= origOffsetY ) {
+                    $(sticky).addClass('sidebar__fixed');
+                }
+                else {
+                    $(sticky).removeClass('sidebar__fixed');
+                }
             }
 
             document.addEventListener('scroll', onScroll);
