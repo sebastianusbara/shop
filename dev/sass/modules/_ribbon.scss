@@ -1,0 +1,22 @@
+.ribbon {
+	position: absolute;
+	padding: 10px;
+    top: 10px;
+    right: -20px;
+    &:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 20px 20px 0 0;
+        top: 45px;
+        right: 0px;
+    }
+}
+
+.ribbon-hot {
+    background: red;
+    color: white;
+    &:after {
+        border-color: maroon transparent transparent transparent;
+    }
+}
