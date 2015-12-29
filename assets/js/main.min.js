@@ -30,6 +30,7 @@
             Site.deleteItem();
             Site.loadData();
             Site.mainSlider();
+            Site.fixedSidebar();
 
             window.Site = Site;
         },
@@ -173,6 +174,18 @@
                 arrows: false,
                 dots: true
             });
+        },
+
+        fixedSidebar: function() {
+            var sticky = document.querySelector('.sidebar');
+            var origOffsetY = sticky.offsetTop;
+
+            function onScroll(e) {
+            window.scrollY >= origOffsetY ? sticky.classList.add('sidebar__fixed') :
+            sticky.classList.remove('sidebar__fixed');
+            }
+
+            document.addEventListener('scroll', onScroll);
         }
     };
 

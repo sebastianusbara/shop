@@ -1366,18 +1366,12 @@ img {
 }
 
 .sidebar {
-  top: 4px;
-  height: 100%;
-  width: 100%;
-  padding: 60px 20px 0 20px;
-  right: 0;
+  width: 300px;
 }
 
-@media screen and (min-width: 48em) {
-  .sidebar {
-    right: 100px;
-    width: 300px;
-  }
+.sidebar__fixed {
+  position: fixed;
+  top: 50px;
 }
 
 .order {
