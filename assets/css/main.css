@@ -1197,36 +1197,37 @@ input[type="number"] {
   height: 350px;
 }
 
-.main__slider .slick-dots {
+.slick-dots {
   position: absolute;
   bottom: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+  z-index: 10;
+  padding: 0;
 }
 
-.main__slider .slick-dots li {
+.slick-dots li {
   display: inline-block;
+  margin-right: 12px;
 }
 
-.main__slider .slick-dots li button {
+.slick-dots li button {
   width: 30px;
   height: 30px;
   -webkit-border-radius: 100%;
           border-radius: 100%;
   border: white solid 5px;
-  padding: 12px;
-  margin-right: 10px;
   cursor: pointer;
   background: none;
 }
 
-.main__slider .slick-dots li button:focus {
+.slick-dots li button:focus {
   outline: none;
 }
 
-.main__slider li.slick-active button {
+li.slick-active button {
   background: #0094ed;
   width: 60px;
   -webkit-border-radius: 20px;

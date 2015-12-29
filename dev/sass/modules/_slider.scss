@@ -10,37 +10,39 @@
 		}
 	}
 	
-	.slick-dots {
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		transform: translateX(-50%);
-	}
+}
 
-	.slick-dots li {
-		display: inline-block;
-		
-		button {
-			width: 30px;
-			height: 30px;
-			border-radius: 100%;
-			border: white solid 5px;
-			padding: 12px;
-			margin-right: 10px;
-			cursor: pointer;
-			background: none;
+.slick-dots {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	padding: 0;
+}
 
-			&:focus {
-				outline: none;
-			}
+.slick-dots li {
+	display: inline-block;
+	margin-right: 12px;
+	
+	button {
+		width: 30px;
+		height: 30px;
+		border-radius: 100%;
+		border: white solid 5px;
+		cursor: pointer;
+		background: none;
+
+		&:focus {
+			outline: none;
 		}
-
 	}
 
-	li.slick-active button {
-		background: $link;
-		width: 60px;
-		border-radius: 20px;
-	}
+}
+
+li.slick-active button {
+	background: $link;
+	width: 60px;
+	border-radius: 20px;
 }
 

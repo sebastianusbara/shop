@@ -173,6 +173,9 @@
             $('.main__slider').slick({
                 arrows: false,
                 dots: true,
+                customPaging: function(slider, i) {
+                    return '<button type="button" data-role="none" role="button" aria-required="false" tabindex="0"></button>';
+                }
             });
         },
 
@@ -183,8 +186,7 @@
             function onScroll(e) {
                 if ( window.scrollY >= origOffsetY ) {
                     $(sticky).addClass('sidebar__fixed');
-                }
-                else {
+                } else {
                     $(sticky).removeClass('sidebar__fixed');
                 }
             }
