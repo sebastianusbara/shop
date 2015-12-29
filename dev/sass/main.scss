@@ -59,19 +59,11 @@ img {
 
 .content {
     position: relative;
-    width: 90%;
     margin: auto;
     margin-bottom: 200px;
-
-    @media #{$medium} {
-        width: calc(100% - 500px);
-        margin-left: 100px;
-    }
 }
 
 .sidebar {
-    float: right;
-    position: fixed;
     top: 4px;
     height: 100%;
     width: 100%;

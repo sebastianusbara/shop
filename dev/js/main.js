@@ -15,7 +15,8 @@
         _jquery_local   : path.js + 'jquery.min.js',
         _handlebars     : path.js + 'handlebars.min.js',
         _fastclick      : path.js + 'fastclick.min.js',
-        _autonumeric    : path.js + 'autoNumeric.min.js'
+        _autonumeric    : path.js + 'autoNumeric.min.js',
+        _slick          : path.js + 'slick.min.js'
     };
 
     var Site = {
@@ -28,6 +29,7 @@
             Site.addItem();
             Site.deleteItem();
             Site.loadData();
+            Site.mainSlider();
 
             window.Site = Site;
         },
@@ -164,6 +166,13 @@
                    $btn.trigger('click');
                }
             });
+        },
+
+        mainSlider: function() {
+            $('.main__slider').slick({
+                arrows: false,
+                dots: true
+            });
         }
     };
 
@@ -180,6 +189,9 @@
     Modernizr.load([
         {
             load    : assets._jquery_cdn,
+        },
+        {
+            load    : assets._slick,
         },
         {   
             load    : assets._handlebars,

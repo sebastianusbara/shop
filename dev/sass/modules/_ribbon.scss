@@ -3,6 +3,7 @@
 	padding: 10px;
     top: 10px;
     right: -20px;
+
     &:after {
         content: '';
         position: absolute;
@@ -16,6 +17,7 @@
 .ribbon-hot {
     background: red;
     color: white;
+    
     &:after {
         border-color: maroon transparent transparent transparent;
     }
