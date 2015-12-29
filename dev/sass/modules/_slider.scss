@@ -23,7 +23,6 @@
 
 .slick-dots li {
 	display: inline-block;
-	margin-right: 12px;
 	
 	button {
 		width: 30px;
@@ -37,7 +36,10 @@
 			outline: none;
 		}
 	}
+}
 
+.slick-dots li + li {
+	margin-left: 12px;
 }
 
 li.slick-active button {

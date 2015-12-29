@@ -1210,7 +1210,6 @@ input[type="number"] {
 
 .slick-dots li {
   display: inline-block;
-  margin-right: 12px;
 }
 
 .slick-dots li button {
@@ -1225,6 +1224,10 @@ input[type="number"] {
 
 .slick-dots li button:focus {
   outline: none;
+}
+
+.slick-dots li + li {
+  margin-left: 12px;
 }
 
 li.slick-active button {
